@@ -1,4 +1,4 @@
-# 📌 Web Backend Study
+# Web Backend Study
 
 * 백엔드 개발자로 성장하기 위해 필요한 데이터베이스와 네트워크 지식을 정리하는 저장소입니다.
 
