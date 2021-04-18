@@ -106,12 +106,12 @@ and d.deptno = 10
 and d.loc like '서울%';
 ```
 
-(1) dept 테이블의 deptno 인덱스에서 "deptno = 10"인 인덱스 범위를 추출
-(2) dept 테이블에서 튜플에 Access
-(3) 튜플의 "d.loc like '서울%'" 조건을 확인 후 아니면 (2)로 돌아감
-(4) "e.deptno = d.deptno"에서 d.deptno는 상수가 되어 "e.deptno = 10"이 됨
-(5) emp 테이블은 랜덤 Access
-(6) emp 테이블의 튜플에서 "e.job = 'CLERK'" 조건 확인 → 맞으면 Select
+(1) dept 테이블의 deptno 인덱스에서 "deptno = 10"인 인덱스 범위를 추출<br>
+(2) dept 테이블에서 튜플에 Access<br>
+(3) 튜플의 "d.loc like '서울%'" 조건을 확인 후 아니면 (2)로 돌아감<br>
+(4) "e.deptno = d.deptno"에서 d.deptno는 상수가 되어 "e.deptno = 10"이 됨<br>
+(5) emp 테이블은 랜덤 Access<br>
+(6) emp 테이블의 튜플에서 "e.job = 'CLERK'" 조건 확인 → 맞으면 Select<br>
 (7) (2)부터 다시 시작
 
 ### 👉 Sort Merge Join (정렬 병합)
