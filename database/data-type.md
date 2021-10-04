@@ -1,4 +1,4 @@
-# MSSQL Data Type
+# 🔗 MSSQL Data Type
 
 <br>
 
