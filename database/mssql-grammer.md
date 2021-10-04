@@ -1,4 +1,4 @@
-# 함수
+# 🔗 함수
 
 <br>
 
@@ -29,11 +29,11 @@ SELECT DATEDIFF(datepart, startdate, enddate);
 ```
 
 ``` sql
-SELECT GETDATE(); --
+SELECT GETDATE(); -- 현재 날짜와 시간
 SELECT DATEADD(dd, 10, GETDATE()); -- 10일 뒤
-SELECT DATEADD(wk, 2, GETDATE()); -- 2
+SELECT DATEADD(wk, 2, GETDATE()); -- 2주 뒤
 SELECT DATEPART(yyyy,GETDATE()); -- (YYYY 형식)
-SELECT DATEDIFF(mi,'2021-04-08 00:00:00',GETDATE()); --
+SELECT DATEDIFF(mi,'2021-04-08 00:00:00',GETDATE());
 ```
 
 ### 👉 GETDATE()와 SYSDATETIME()의 차이
