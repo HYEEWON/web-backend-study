@@ -2,7 +2,7 @@
 
 <br>
 
-## 정의 및 특징
+## 🥨 정의 및 특징
 * 하나의 논리적인 작업 단위
 * 작업이 전부 수행되거나 전부 수행되지 않음
 * 원자성 (Atomicity): 트랜잭션이 모두 반영되거나 모두 반영되지 않아야 함
@@ -16,7 +16,7 @@
 
 <br>
 
-## Commit과 Rollback
+## 🥨 Commit과 Rollback
 
 * Commit: 트랜잭션이 성공하여 작업이 DB에 영구적으로 반영되는 것
 * Rollback: 트랜잭션이 실패하여 작업 내역이 취소되고 원래의 상태로 되돌아 가는 것
@@ -86,7 +86,7 @@ SELECT * FROM Product;
 
 <br>
 
-## 동시성 제어 (Currency Control)
+## 🥨 동시성 제어 (Currency Control)
 
 * 다중 사용자 DBMS에서 반드시 지원해야 되는 기능
 * 둘 이상의 트랜잭션이 동시에 발생할 때 `일관성`을 유지하도록 하는 것
@@ -107,7 +107,7 @@ SELECT * FROM Product;
 
 <br>
 
-## 잠금 (Lock)
+## 🥨 잠금 (Lock)
 
 * 동시성 제어 기법
 
@@ -142,11 +142,11 @@ SELECT * FROM Product;
 ```sql
 Lock
 EXEC SP_LOCK; -- Lock spid
-SELECT * FROM SYS.sysprocesses WHERE blocked > 0; -- Lock
-DBCC inputbuffer(spid); -- Lock -- spid
-EXEC SP_WHO (spid); -- Lock Host -- spid
-EXEC SP_WHO2 (spid);
-KILL [spid]; -- Lock
+SELECT * FROM SYS.sysprocesses WHERE blocked > 0; -- Lock 조회
+DBCC inputbuffer(spid); -- lOck에 걸리게 한 쿼리 확인
+EXEC SP_WHO (spid); -- 프로세스 정보 확인
+EXEC SP_WHO2 (spid); -- 프로세스 정보 확인 (자세한 정보)
+KILL [spid]; -- 프로세스 종료
 ```
 
 ### 👉 잠금의 한계
@@ -156,7 +156,7 @@ KILL [spid]; -- Lock
 
 <br>
 
-## 2단계 잠금 규약 (Two-Phase Locking Protocol)
+## 🥨 2단계 잠금 규약 (Two-Phase Locking Protocol)
 ### 👉 기본 2단계 잠금 규약
 #### 정의
 * 트랜잭션들의 Lock, Unlock 시간을 구분하여 수행하는 것
@@ -185,7 +185,7 @@ KILL [spid]; -- Lock
 
 <br>
 
-## 트랜잭션 스케줄링
+## 🥨 트랜잭션 스케줄링
 * 직렬 스케줄: 특정 트랜잭션의 실행이 종료되어야 다른 트랜잭션을 실행
 * 비직렬 스케줄: 트랜잭션을 병행해서 실행하는 것
 * 직렬 가능 스케줄: 서로 영향을 주지 않는 트랜잭션들을 비직렬 스케줄링으로 실행
