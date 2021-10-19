@@ -17,10 +17,13 @@
   * 함수, 이동, 제어문, 커서, 예외 처리
 * [Stored Procedure](https://github.com/HYEEWON/web-backend-study/blob/main/database/stored-procedure.md)
 * [User Defined Function](https://github.com/HYEEWON/web-backend-study/blob/main/database/user-defined-function.md)
+* [실행 계획](https://github.com/HYEEWON/web-backend-study/blob/main/database/execution-plan.md)
 
 <br>
 
 ## 📌 Network
+* [HTTP 요청/응답 헤더](https://github.com/HYEEWON/web-backend-study/blob/main/network/http-msg-header-format.md)
+* [웹 브라우저 주소 창에 주소를 입력하고 화면이 뜰 때까지의 과정](https://github.com/HYEEWON/web-backend-study/blob/main/network/search-url.md)
 
 <br>
 
