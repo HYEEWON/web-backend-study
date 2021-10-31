@@ -13,11 +13,25 @@
 * [Index](https://github.com/HYEEWON/web-backend-study/blob/main/database/index.md)
 * [Integrity](https://github.com/HYEEWON/web-backend-study/blob/main/database/integrity.md)
 * [Transaction](https://github.com/HYEEWON/web-backend-study/blob/main/database/transaction.md)
+  * 트랜잭션
+  * 트랜잭션 격리수준
+  * 동시성 제어
+  * 잠금
+  * 2단계 잠금 규약
 * [Mssql 문법](https://github.com/HYEEWON/web-backend-study/blob/main/database/mssql-grammer.md)
-  * 함수, 이동, 제어문, 커서, 예외 처리
+  * 함수
+  * 이동
+  * 제어문
+  * 커서
+  * 예외 처리
 * [Stored Procedure](https://github.com/HYEEWON/web-backend-study/blob/main/database/stored-procedure.md)
 * [User Defined Function](https://github.com/HYEEWON/web-backend-study/blob/main/database/user-defined-function.md)
 * [실행 계획](https://github.com/HYEEWON/web-backend-study/blob/main/database/execution-plan.md)
+* [분할](https://github.com/HYEEWON/web-backend-study/blob/main/database/partitioning-sharding-replica.md)
+  * 파티셔닝
+  * 샤딩
+  * 레플리카
+
 
 <br>
 
