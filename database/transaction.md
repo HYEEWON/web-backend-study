@@ -86,6 +86,61 @@ SELECT * FROM Product;
 
 <br>
 
+## 🥨 트랜잭션 격리 수준 (Transaction Isolation Level)
+
+* 동시에 여러 트랜잭션이 처리될 때, 특정 트랜잭션이 다른 트랜잭션에서 변경/조회하는 데이터에 대한 접근 권한 수준을 결정하는 것
+* 고립 수준이 높아질 수록 데이터의 무결성이 높아짐, 동시성과 성능은 하락 → 동시성과 격리 수준은 Trade-Off 관계
+* MSSQL은 READ COMMITTED 레벨을 디폴트로 사용하고 4가지 레벨을 모두 지원함
+* MySQL은 REPEATABLE READ 레벨을 디폴트로 사용
+* ORACLE은 READ COMMITTED 레벨을 디폴트로 사용
+
+### 👉 종류
+* 아래 표는 격리수준이 낮은 것부터 순서대로 정리
+
+#### READ UNCOMMITTED (Level 0)
+* 트랜잭션에서 처리 중인 데이터를 `커밋/롤백과 상관없이 다른 트랜잭션이 읽는 것을 허용`
+* Select를 수행할 때 해당 데이터에 Shared Lock이 걸리지 않는 레벨
+* Dirty Read, Unrepeatable Read, Phantom Read 발생
+#### READ COMMITTED (Level 1)
+* 트랜잭션이 `커밋되어 확정된 데이터만 다른 트랜잭션이 읽도록 허용`
+* Select를 수행할 때 해당 데이터에 Shared Lock이 걸리는 레벨
+* 대부분의 RDB에서 기본적으로 사용되는 격리 수준, Dirty Read 현상이 발생하지 않음
+* 트랜잭션의 완료 전에 다른 트랜잭션이 데이터에 접근하면 이 트랜잭션은 변경된 데이터가 아닌 백업 레코드에서 값을 읽음
+* Unrepeatable Read, Phantom Read 발생
+#### REPEATABLE READ (Level 2)
+* 트랜잭션에서 조회한 데이터의 내용이 항상 동일함을 보장 (데이터 추가는 허용, 변경/삭제는 허용하지 않음)
+* 트랜잭션이 완료될 때까지 Select 문이 사용하는 모든 데이터에 Shared Lock이 걸리는 레벨 (레코드만 잠금)
+* Phantom Read 발생
+#### SERIALIZABLE (Level 3) 
+* 트랜잭션이 작업 중일 때 다른 트랜잭션의 접근을 허용하지 않음 (데이터의 추가/변경/삭제 불가능)
+* 트랜잭션이 완료될 때까지 Select 문이 사용하는 모든 데이터에 Range Shared Lock이 걸리는 레벨 (범위로 잠금)
+* 완벽한 읽기 일관성 모드 제공
+* 문제가 발생하지 않음
+
+### 👉 문제점
+#### Dirty Read 
+* 커밋되지 않은 트랜잭션의 데이터를 다른 트랜잭션이 읽을 수 있는 것
+* 만약 트랜잭션이 롤백되면 그 값을 읽은 트랜잭션은 일관성이 없는 상태가 됨
+* 예시
+  * 트랜잭션 A가 데이터 x=10을 x=100으로 수정 (커밋 전) → 트랜잭션 B가 데이터 x=100을 읽음 → 트랜잭션 A가 롤백할 경우, 트랜잭션 B는 Dirty Read
+#### Unrepeatable Read 
+* 하나의 트랜잭션이 같은 데이터를 읽을 때, 데이터의 값이 수정/삭제(Update/Delete)되어 쿼리의 결과가 달라지는 것
+* 예시
+  * 트랜잭션 A가 데이터 x=10을 x=100으로 수정 (커밋 전) → 트랜잭션 B가 데이터 x=10를 읽음 → 트랜잭션 A가 커밋 → 트랜잭션 B는 x=100을 읽음
+#### Phantom Read 
+* 하나의 트랜잭션이 같은 쿼리를 두번 실행할 때, 데이터가 추가(Insert)되어 두 쿼리의 결과가 달라지는 것
+
+### 👉 격리수준 설정 방법
+
+```sql
+SET TRANSACTION ISOLATION LEVEL [격리수준];
+
+-- 예시
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+```
+
+<br>
+
 ## 🥨 동시성 제어 (Currency Control)
 
 * 다중 사용자 DBMS에서 반드시 지원해야 되는 기능
