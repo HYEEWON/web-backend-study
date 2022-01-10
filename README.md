@@ -41,4 +41,17 @@
 
 <br>
 
+## 📌 C#
+* 기초1
+* [기초2](https://github.com/HYEEWON/web-backend-study/blob/main/c%23/basic2.md)
+  * 변수, 상수, 제어문, 연산자, 오버로딩과 오버라이딩, 대리자, 이벤트
+* [기초3](https://github.com/HYEEWON/web-backend-study/blob/main/c%23/basic3.md)
+  * Attribute, #region, 비동기: async/await, yield 키워드
+
+<br>
+
 ## 📌ETC
+* 라이센스
+* 개발자 도구
+* Fiddler
+
