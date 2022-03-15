@@ -51,7 +51,7 @@
 <br>
 
 ## 📌ETC
-* 라이센스
+* [라이센스](https://github.com/HYEEWON/web-backend-study/blob/main/etc/license.md)
 * 개발자 도구
 * Fiddler
 
