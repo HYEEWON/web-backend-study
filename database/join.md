@@ -201,22 +201,6 @@ AND B.COL2 = '333';
 * Sort Merge 조인의 정렬 부하가 클 때 사용
 * Hash Table은 일회성으로 수행 빈도가 낮고 수행 시간이 긴 조인에 사용하는 것이 좋음
 
-#### 🔸 종류
-
-<table>
-    <th rowspan="2">In-Memory Hash Join<br>(인 메모리 해쉬 조인)</th>
-        <td>해시 테이블을 메모리에 유지할 수 있을 경우 사용</td>
-        <tr>
-            <td>1. Build Input을 읽어 해시 테이블을 생성 (키와 행을 저장)<br>2. Probe Input을 스캔하여 해시 테이블을 탐색 → 해시 값으로 버킷을 찾아 해시 체인을 스캔하며 데이터를 검색</td>
-        </tr>
-    <th rowspan="3">Grace Hash Join<br>(유예 해쉬 조인)</th>
-        <td>해시 테이블을 저장할 메모리가 부족해 디스크를 사용하는 경우 사용</td>
-        <tr>
-            <td>1. 파티션 단계<br>&nbsp;&nbsp;▪&nbsp;&nbsp;Where 조건절로 테이블 필터링<br>&nbsp;&nbsp;▪&nbsp;&nbsp;해시 함수를 적용해서 해시 값에 따라 파티셔닝 → 파티션 별로 TempDB에 임시 파일로 저장<br>&nbsp;&nbsp;▪&nbsp;&nbsp;두 테이블은 같은 해시 함수를 사용하여 같은 해시 키를 가짐 → 같은 해시 키를 가진 두 파티션을 파티션 Pair라고 함<br>
-            2. 조인 단계<br>&nbsp;&nbsp;▪&nbsp;&nbsp;파티션 Pair에서 한쪽 파티션 파일을 해시 테이블로 생성<br>&nbsp;&nbsp;&nbsp;&nbsp;(어떤 파티션 Pair가 Build Input이 될지는 독립적으로 결정)<br>&nbsp;&nbsp;▪&nbsp;&nbsp;파티션 파일의 행을 하나씩 읽어 해시 테이블을 탬색</td>
-        </tr>
-</table>
-
 <br>
 
 ## 🌻 MSSQL 사용 방법
