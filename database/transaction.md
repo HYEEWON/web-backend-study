@@ -95,7 +95,7 @@ SELECT * FROM Product;
 * ORACLE은 READ COMMITTED 레벨을 디폴트로 사용
 
 ### 👉 종류
-* 아래 표는 격리수준이 낮은 것부터 순서대로 정리
+* [참고](https://steady-coding.tistory.com/562)
 
 #### READ UNCOMMITTED (Level 0)
 * 트랜잭션에서 처리 중인 데이터를 `커밋/롤백과 상관없이 다른 트랜잭션이 읽는 것을 허용`
@@ -104,8 +104,6 @@ SELECT * FROM Product;
 #### READ COMMITTED (Level 1)
 * 트랜잭션이 `커밋되어 확정된 데이터만 다른 트랜잭션이 읽도록 허용`
 * Select를 수행할 때 해당 데이터에 Shared Lock이 걸리는 레벨
-* 대부분의 RDB에서 기본적으로 사용되는 격리 수준, Dirty Read 현상이 발생하지 않음
-* 트랜잭션의 완료 전에 다른 트랜잭션이 데이터에 접근하면 이 트랜잭션은 변경된 데이터가 아닌 백업 레코드에서 값을 읽음
 * Unrepeatable Read, Phantom Read 발생
 #### REPEATABLE READ (Level 2)
 * 트랜잭션에서 조회한 데이터의 내용이 항상 동일함을 보장 (데이터 추가는 허용, 변경/삭제는 허용하지 않음)
@@ -212,24 +210,25 @@ KILL [spid]; -- 프로세스 종료
 <br>
 
 ## 🥨 2단계 잠금 규약 (Two-Phase Locking Protocol)
+* 직렬 가능한 스케줄을 보장하기 위해 사용
+
 ### 👉 기본 2단계 잠금 규약
 #### 정의
 * 트랜잭션들의 Lock, Unlock 시간을 구분하여 수행하는 것
 * 모든 Lock이 최초의 Unlock보다 먼저 발생 → 직렬 가능성 보장
-* 확장 단계(Growing Phase) 트랜잭션은 Lock 연산만 할 수 있고, Unlock 연산은 할 수 없는 단계
-* 축소 단계(Shrinking Phase) 트랜잭션은 Unlock 연산만 할 수 있고, Lock 연산은 할 수 없는 단계
+* 확장 단계(Growing Phase): 트랜잭션은 Lock 연산만 할 수 있고, Unlock 연산은 할 수 없는 단계
+* 축소 단계(Shrinking Phase): 트랜잭션은 Unlock 연산만 할 수 있고, Lock 연산은 할 수 없는 단계
 #### 한계
 * 일관성 보장, 직렬 가능성 보장
 * 교착상태(Deadlock)에 빠질 수 있어 주의 필요
-* Cascading Rollback이 발생 가능
+* Cascading Rollback(연쇄 )이 발생 가능
 
 ### 👉 Strict 2 Phase Locking Protocol
-* 모든 배타적 잠금은 해당 트랜잭션이 완료될 때까지 Unlock을 하지 않음
-* 배타적 잠금의 Unlock을 트랜잭션이 완료될 때 수행
+* 모든 E-Lock을 트랜잭션이 완료될 때 Unlock
 * Cascading Rollback이 발생하지 않음
 
 ### 👉 Rigorous 2 Phase Locking Protocol
-* 모든 Lock은 트랜잭션이 완료될 때까지 Unlock을 하지 않음
+* 모든 Lock을 트랜잭션이 완료될 때 Unlock
 * Strict 2PLP보다 제한적
 
 ### 👉 Static 2 Phase Locking Protocol
