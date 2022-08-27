@@ -85,7 +85,6 @@
   * Scale-In: 성능이 좋은 HW 사용
   * Read 부하가 크다면, 캐시나 Replication 적용
   * 테이블의 일부 컬럼만 자주 사용한다면, Vertical Partition 적용
-    * 데이터를 Hot(자주 사용), Cold(드물게 사용)로 분리 ([참고](https://d2.naver.com/helloworld/526125))
 
 <br>
 
