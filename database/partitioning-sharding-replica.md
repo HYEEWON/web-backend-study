@@ -54,15 +54,15 @@
 
 * `여러 DB`에 데이터를 물리적으로 `수평 분할 방식(Horizontal Partitioning)`으로 분산 저장/조회하는 것
 * `트래픽 분산` 목적으로 사용: 데이터베이스에 데이터 증가 -> 용량 이슈, CRUD 성능 저하
-* 애플리케이션 서버 레벨에서 구현하는 경우가 많았으나 최근에는 플랫폼 차원에서도 제공
-  * Hibernate Shards, Spock Proxy(MySQL Proxy 기반), Gizzard(Twitter), Spider(MariaDB 기본 내장)
 * 예시
   * 주민 테이블 -> a동 테이블은 A DB, b동 테이블은 B DB에 저장
 
 ## 🎠 장점
-* 쓰기 성능 향상 (읽기 성능 동일)
+* 트래픽 분산
+* 쿼리 성능 향상
 
 ## 🎠 단점
+* 복잡도가 증가하고 Hotspot이 생기면 샤딩의 의미가 사라짐
 * 두 개 이상의 샤드에서 `JOIN 불가`
 * 일관성과 복제에서 불리
 * auto increment 등은 샤드 별로 달라질 수 있고, last_insert_id() 값은 유효하지 않음
@@ -82,7 +82,7 @@
 * 샤딩은 프로그래밍/운영의 `복잡도를 향상`시키는 단점이 있음
 * 가능하면 피하는 것이 좋음
 * 대체 방안
-  * Scale-In: 성능이 좋은 HW 사용
+  * Scale-Up: 성능이 좋은 HW 사용
   * Read 부하가 크다면, 캐시나 Replication 적용
   * 테이블의 일부 컬럼만 자주 사용한다면, Vertical Partition 적용
 
